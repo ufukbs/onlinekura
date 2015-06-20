@@ -44,6 +44,14 @@ body{
     margin-bottom: 30px;
 }
 
+.flags {
+    top: 5px;
+    left: 5px;
+    float: left;
+    position: absolute;
+    cursor: pointer;
+}
+
 @media screen and (max-device-width: 769px){
     #welcome img{
         max-height: 100px;
