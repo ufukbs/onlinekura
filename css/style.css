@@ -17,6 +17,8 @@ body{
 
 #result {
     margin-top: 30px;
+    position: relative;
+    z-index: 999999;
 }
 
 .ordered-list {
@@ -44,6 +46,6 @@ body{
 
 @media screen and (max-device-width: 769px){
     #welcome img{
-        max-height: 125px;
+        max-height: 100px;
     }
 }
