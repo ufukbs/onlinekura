@@ -52,6 +52,14 @@ body{
     cursor: pointer;
 }
 
+.minesweeper_button {
+    top: 5px;
+    right: 5px;
+    float: right;
+    position: absolute;
+    cursor: pointer;
+}
+
 @media screen and (max-device-width: 769px){
     #welcome img{
         max-height: 100px;
