@@ -37,7 +37,7 @@ var success = "<div class='alert alert-success text-center'>" +
 $(document).ready(function(){
     $('#get-result').click(function(e){
         e.preventDefault();
-        var lines = $('#user-input').val().replace(/(\r\n|\n|\r)/gm,' ').replace(',',' ').trim().split(' ');
+        var lines = $('#user-input').val().replace(/[^\u00BF-\u1FFF\u2C00-\uD7FF\w]+/g," ").trim().split(' ');
         var message = "";
         var nomineeCount = $('#count').val();
         if((lines.length -1 < nomineeCount))
