@@ -41,3 +41,9 @@ body{
 #welcome{
     margin-bottom: 30px;
 }
+
+@media screen and (max-device-width: 769px){
+    #welcome img{
+        max-height: 125px;
+    }
+}

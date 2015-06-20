@@ -1,3 +1,39 @@
+var error_nominee_no_text, error_nominee_count_text, success_text, share_text, title_text, close_text;
+
+if(document.URL.indexOf("en") >= 0){
+    close_text = "Close";
+    error_nominee_no_text = "Number of nominees should be higher than number of winners !";
+    error_nominee_count_text = "Number of winners should be higher than 0 !";
+    success_text = "Congratulations!";
+    share_text = "share: ";
+    title_text = "Winner";
+} else{
+    close_text = "Kapat";
+    error_nominee_no_text = "Aday sayısı kazanan sayısından fazla olmalıdır";
+    error_nominee_count_text = "Kazanan sayısı en az 1 olmalıdır.";
+    success_text = "Tebrikler";
+    share_text = "paylaş: ";
+    title_text = "Kazananlar";
+}
+
+var error_nominee_no = "<div class='alert alert-danger text-center'>" +
+    "<button type='button' class='close' data-dismiss='alert' aria-label='"+close_text+"'>" +
+    "<span aria-hidden='true'>&times;</span></button>" +
+    error_nominee_no_text +
+    "</div>";
+
+var error_nominee_count = "<div class='alert alert-danger text-center'>" +
+    "<button type='button' class='close' data-dismiss='alert' aria-label='"+close_text+"'>" +
+    "<span aria-hidden='true'>&times;</span></button>" +
+    error_nominee_count_text +
+    "</div>";
+
+var success = "<div class='alert alert-success text-center'>" +
+        "<button type='button' class='close' data-dismiss='alert' aria-label='"+close_text+"'>" +
+        "<span aria-hidden='true'>&times;</span></button>" +
+        "<h3 class='special-border'><i class='fa fa-trophy'></i> "+success_text+" <i class='fa fa-trophy'></i></h3>" +
+        "<ul class='ordered-list'>";
+
 $(document).ready(function(){
     $('#get-result').click(function(e){
         e.preventDefault();
@@ -6,27 +42,15 @@ $(document).ready(function(){
         var nomineeCount = $('#count').val();
         if((lines.length -1 < nomineeCount))
         {
-            message = "<div class='alert alert-danger text-center'>" +
-            "<button type='button' class='close' data-dismiss='alert' aria-label='Kapat'>" +
-            "<span aria-hidden='true'>&times;</span></button>";
-            message += "Aday sayısı kazanan sayısından fazla olmalıdır.";
-            message += "</div>";
+            message += error_nominee_no;
         }
         else if (nomineeCount<1)
         {
-            message = "<div class='alert alert-danger text-center'>" +
-                "<button type='button' class='close' data-dismiss='alert' aria-label='Kapat'>" +
-                "<span aria-hidden='true'>&times;</span></button>";
-            message += "Kazanan sayısı en az 1 olmalıdır.";
-            message += "</div>";
+            message += error_nominee_count;
         }
         else
         {
-            message += "<div class='alert alert-success text-center'>" +
-            "<button type='button' class='close' data-dismiss='alert' aria-label='Kapat'>" +
-            "<span aria-hidden='true'>&times;</span></button>";
-            message += "<h3 class='special-border'><i class='fa fa-trophy'></i> Tebrikler <i class='fa fa-trophy'></i></h3>";
-            message += "<ul class='ordered-list'>";
+            message += success;
             var winners = [];
             while(nomineeCount != 0)
             {
@@ -50,10 +74,10 @@ $(document).ready(function(){
     // paylaş butonları
     $("body").floatingSocialShare({
         buttons: ["facebook","twitter"],
-        text: "paylaş: ",
-        title: "Sonuçlar",
+        text: share_text,
+        title: title_text,
         description: $("#result").text(),
-        url: "http://www.onlinekura.com"
+        url: window.location.href
     });
     // analitik
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
