@@ -53,8 +53,8 @@ body{
 }
 
 .minesweeper_button {
-    top: 5px;
-    right: 5px;
+    top: 40px;
+    right: 80px;
     float: right;
     position: absolute;
     cursor: pointer;
