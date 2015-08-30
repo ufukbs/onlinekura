@@ -69,7 +69,7 @@ $(document).ready(function(){
             message += "</div>";
         }
         $("#result").hide().html(message).fadeIn('slow');
-        $('body').scrollTo('#result');
+        // scroll to func: $('body').scrollTo('#result');
         $("meta[property='og\\:description']").attr("content", $("#result").text());
     });
     // paylaş butonları
