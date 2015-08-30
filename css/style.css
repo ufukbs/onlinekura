@@ -18,7 +18,6 @@ body{
 #result {
     margin-top: 30px;
     position: relative;
-    z-index: 999999;
 }
 
 .ordered-list {
@@ -42,6 +41,7 @@ body{
 
 #welcome{
     margin-bottom: 30px;
+    margin-top: 30px;
 }
 
 .flags {
@@ -52,12 +52,18 @@ body{
     cursor: pointer;
 }
 
-.minesweeper_button {
-    top: 5px;
-    right: 5px;
-    float: right;
-    position: absolute;
-    cursor: pointer;
+.navbar-brand {
+    padding: 0;
+    height: 48px;
+}
+
+.img-brand {
+    height: 48px;
+    margin-left: 56px;
+}
+
+#welcome img {
+    max-height: 164px;
 }
 
 @media screen and (max-device-width: 769px){

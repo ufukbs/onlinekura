@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" property="og:description" content="Markete kimin gideceğine kura çek, şanslı olan kazansın... Adayları yaz, kaç kişinin kazanacağını belirle. Online Kura, Online Çekiliş, Kura Çek, Çekiliş Yap, Programsız Kura Çekme & Çekiliş Yapma Sitesi">
+    <meta name="author" content="ufukbs">
+    <title>Online Kura | İsim ile Kura Çek</title>
+    <meta property="og:locale" content="tr_TR" />
+    <meta property="og:url" content="http://onlinekura.com">
+    <meta property="og:title" content="Online Kura | Çekiliş">
+    <meta property="og:type" content="website">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="css/jquery.floating-social-share.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
+
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon.ico">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <style type="text/css">
+
+        span, input, a, div {
+            box-sizing: border-box;
+        }
+
+        .btn, .input {
+            padding: 12px 15px;
+            font-size: 0.65em;
+            border-radius: 3px;
+            font-family: 'Exo 2', sans-serif;
+            color: #666;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        .btn {
+            background: #f7f7f7;
+            text-decoration: none;
+            text-transform: uppercase;
+            border: 0;
+            cursor: pointer;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .flex-table {
+            display: table;
+        }
+
+        .flex-cell,
+        .flex-cell-min {
+            display: table-cell;
+            width: 99%;
+        }
+
+        .flex-cell-min {
+            width: 1%;
+            white-space: nowrap;
+        }
+
+        .action-btn {
+            display: block;
+            font-size: 1.2em;
+            line-height: 1em;
+            padding: 10px;
+            border: 1px solid #eee;
+            text-decoration: none;
+            margin: 10px 10px 0;
+            border-radius: 5px;
+        }
+
+        .action-btn:hover {
+            background-color: #f4f4f4;
+        }
+
+        .action-btn .emoji {
+            width: 20px;
+            height: 20px;
+        }
+
+        input[type=radio] {
+            margin: 0 5px 0 0;
+        }
+
+        input[type=number] {
+            padding-right: 5px;
+        }
+
+        .input {
+            border: 1px solid #e0e0e0;
+        }
+
+        .prepend-input {
+            padding: 7px 0 6px 10px;
+            margin: 5px 0;
+            border-right: 1px solid #e0e0e0;
+            line-height: 1;
+            position: absolute;
+        }
+
+        .prepend-input + input {
+            width: 100%;
+            padding-left: 40px;
+            margin-bottom: 10px;
+        }
+
+        code {
+            display: none;
+            margin-top: 10px;
+            text-transform: none;
+            background-color: #fff;
+            padding: 2px 4px;
+            max-width: 400px;
+            text-align: left;
+        }
+
+        .cell .emoji {
+            width: 100%;
+        }
+
+        .cell {
+            width: 25px;
+            height: 25px;
+            display: inline-block;
+            position: relative;
+            padding: 2px 3px;
+            vertical-align: middle;
+            cursor: pointer;
+        }
+
+        .unmasked {
+            cursor: default;
+        }
+
+        #map {
+            padding: 10px;
+            white-space: nowrap;
+        }
+
+        .wrapper {
+            position: relative;
+            -webkit-user-select: none;
+            user-select: none;
+            border-radius: 10px;
+            margin-top: 10px;
+            border: 5px solid #f4f4f4;
+            display: inline-block;
+            min-width: 250px;
+        }
+
+        .won .default-emoji,
+        .lost .default-emoji {
+            display: none;
+        }
+
+        .won #map,
+        .lost #map {
+            pointer-events: none;
+        }
+
+        .lost {
+            box-shadow: 0 0 1px #f00;
+        }
+
+        .won {
+            box-shadow: 0 0 1px #1a1;
+        }
+
+        .bar {
+            background-color: #f4f4f4;
+            width: 100%;
+            display: table;
+        }
+
+        .stat {
+            width: 33.3%;
+            font-size: 0.85em;
+            padding: 8px 10px 5px;
+            display: table-cell;
+            text-align: center;
+            font-family: "Exo 2", sans-serif;
+        }
+
+        .stat:after {
+            display: block;
+            color: #999;
+            margin-top: 5px;
+            font-size: 0.7em;
+            letter-spacing: 1px;
+            content: attr(title);
+        }
+
+        .settings {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            top: -20px;
+            right: -20px;
+            background-color: #f4f4f4;
+            text-align: center;
+            border-radius: 25px;
+            padding: 2px 8px;
+            border: 5px solid #fff;
+            cursor: pointer;
+            z-index: 1;
+        }
+
+        .settings .emoji {
+            width: 15px;
+            margin: 6px 0;
+        }
+
+        .settings-popup {
+            display: none;
+            position: absolute;
+            padding: 10px;
+            width: 100%;
+        }
+
+        .settings-popup button {
+            width: 100%;
+            margin: 0;
+        }
+
+        .settings-popup .flex-table {
+            margin-bottom: 10px;
+        }
+
+        .show {
+            display: block;
+        }
+
+        .settings-popup.show ~ * {
+            visibility: hidden;
+        }
+
+        .divider {
+            padding: 0 10px;
+            color: #999;
+            font-size: 0.65em;
+        }
+    </style>
+</head>
+<body>
+<div class="flags">
+    <a href="http://en.onlinekura.com">
+        <img src="img/United-Kingdom.png" title="English" alt="English"/>
+    </a>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html"><img class="img-center img-responsive img-brand" src="img/logo.png" alt="OnlineKura" /></a>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-10 col-sm-offset-1">
+                    <div class="collapse navbar-collapse" id="nav-collapse">
+                        <ul class="nav navbar-nav">
+                            <li><a href="index.html">Anasayfa</a></li>
+                            <li><a href="isim-ile-kura-cek.html" >İsim ile Kura Çek</a></li>
+                            <li><a href="sayi-ile-kura-cek.html" >Sayı ile Kura Çek</a></li>
+                            <li><a href="grup-kurasi-cek.html" >Grup Kurası Çek</a></li>
+                            <li class="active"><a href="mayin-tarlasi-ile-kura-cek.html" >Mayın Tarlası ile Kura Çek</a></li>
+                            <li><a href="tombala-ile-kura-cek.html" >Tombala ile Kura Çek</a></li>
+                        </ul>
+                    </div><!--close navbar-collapse-->
+                </div>
+            </div>
+        </div>
+    </div><!--close container-->
+</nav><!--Close nav-->
+
+<section id="about" class="container content-section text-center">
+    <div class="row">
+        <div class="col-xs-10 col-xs-offset-1 my-section">
+            <div id="welcome">
+            </div>
+
+            <div class="wrapper">
+                <button class="settings js-settings"></button>
+                <div class="js-settings-popup settings-popup">
+                    <div class="flex-table">
+                        <label class="btn flex-cell-min"><input type="radio" name="emoji" id="twemoji" checked> Twemoji</label>
+                        <label class="btn flex-cell-min"><input type="radio" name="emoji" id="emoji"> Native emoji</label>
+                    </div>
+                    <div class="flex-table">
+                        <input id="cols" class="input flex-cell" type="number" value="10">
+                        <div class="flex-cell-min divider">&times;</div>
+                        <input id="rows" class="input flex-cell" type="number" value="10"><br>
+                    </div>
+                    <div class="prepend-input">💣</div>
+                    <input id="bombs" class="input" type="number" value="10">
+
+                    <button class="js-popup-new-game btn">Restart Game</button>
+                </div>
+                <a href="#" class="action-btn js-new-game">
+                    <span class="default-emoji"></span>
+                    <span id="result" class="result-emoji"></span>
+                </a>
+                <div id="map">
+                </div>
+                <div class="bar flex-table">
+                    <div title="BOMBS" id="bombs-left" class="stat flex-cell">0</div>
+                    <div title="MOVES" id="moves" class="stat flex-cell">0</div>
+                    <div title="TIME" id="timer" class="stat flex-cell">0</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container text-center">
+        <p><br> Online Kura Çekme Çekiliş Yapma Sitesine Hoşgeldiniz.</p>
+        <div class="col-xs-10 col-xs-offset-1" ></div>
+    </div>
+    <div class="container text-center">
+        <p>Copyright &copy; onlinekura.com 2015</p>
+        <div class="col-xs-10 col-xs-offset-1" id="disqus_thread"></div>
+    </div>
+</footer>
+<script type="text/javascript">
+    var disqus_shortname = 'onlinekura';
+    var disqus_config = function () {
+        this.language = "tr";
+    };
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.floating-social-share.min.js"></script>
+<script src="http://twemoji.maxcdn.com/twemoji.min.js"></script>
+<script src="js/game.js"></script>
+<script src="js/jquery.scrollTo.min.js"></script>
+<script src="js/script.js"></script>
+
+<script>
+    var emojiset = ['🐣', '💣', '🚧', '◻️']
+    var cols = document.getElementById('cols')
+    var rows = document.getElementById('rows')
+    var bombs = document.getElementById('bombs')
+
+    game = new Game(cols.value, rows.value, bombs.value, emojiset, document.getElementById('twemoji').checked)
+
+    document.querySelector('.js-new-game').addEventListener('click', restart)
+    document.querySelector('.js-popup-new-game').addEventListener('click', restart)
+
+    document.querySelector('.js-settings').addEventListener('click', function() {
+        var list = document.querySelector('.js-settings-popup').classList
+        list.contains('show') ? list.remove('show') : list.add('show')
+    })
+
+    function restart () {
+        clearInterval(game.timer)
+        game = new Game(cols.value, rows.value, bombs.value, emojiset, document.getElementById('twemoji').checked)
+        document.querySelector('.js-settings-popup').classList.remove('show')
+        return false
+    }
+</script>
+</body>
+</html>
