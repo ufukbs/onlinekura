@@ -70,4 +70,8 @@ body{
     #welcome img{
         max-height: 100px;
     }
+    .img-brand {
+         height: 48px;
+         margin-left: 10px;
+     }
 }
