@@ -39,8 +39,8 @@ var error_nominee_no = failureTheme(error_nominee_no_text),
     error_unique_winner = failureTheme(error_unique_winner_text),
     success = successTheme(success_text);
 
-$(document).ready(function(){
-    $('#get-result').click(function(e){
+$(function() {
+    $('#get-result').click(function(e) {
         e.preventDefault();
         var lines = $('#user-input').val().replace(/[^\u00BF-\u1FFF\u2C00-\uD7FF\w]+/g," ").trim().split(' '),
             initial_length = lines.length,
@@ -48,7 +48,7 @@ $(document).ready(function(){
             final_length = lines.length,
             message = "",
             nomineeCount = $('#count').val();
-        
+
         if(initial_length > final_length && final_length - 1 < nomineeCount) {
             message += error_unique_winner;
         }
@@ -77,7 +77,7 @@ $(document).ready(function(){
         // scroll to func: $('body').scrollTo('#result');
         $("meta[property='og\\:description']").attr("content", $("#result").text());
     });
-    // paylaş butonları
+    // share buttons
     $("body").floatingSocialShare({
         buttons: ["facebook","twitter"],
         text: share_text,
@@ -85,35 +85,4 @@ $(document).ready(function(){
         description: $("#result").text(),
         url: window.location.href
     });
-    // analitik
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-63148072-1', 'auto');
-    ga('send', 'pageview');
 });
-(function (d, w, c) {
-    (w[c] = w[c] || []).push(function() {
-        try {
-            w.yaCounter32203149 = new Ya.Metrika({
-                id:32203149,
-                clickmap:true,
-                trackLinks:true,
-                accurateTrackBounce:true
-            });
-        } catch(e) { }
-    });
-
-    var n = d.getElementsByTagName("script")[0],
-        s = d.createElement("script"),
-        f = function () { n.parentNode.insertBefore(s, n); };
-    s.type = "text/javascript";
-    s.async = true;
-    s.src = "https://mc.yandex.ru/metrika/watch.js";
-
-    if (w.opera == "[object Opera]") {
-        d.addEventListener("DOMContentLoaded", f, false);
-    } else { f(); }
-})(document, window, "yandex_metrika_callbacks");
