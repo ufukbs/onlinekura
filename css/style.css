@@ -66,12 +66,39 @@ body{
     max-height: 164px;
 }
 
+@media (min-width: 768px) {
+    .navbar-nav{
+        margin: 0 auto;
+        display: table;
+        table-layout: fixed;
+        float:none;
+    }
+}
+
+@media screen and (min-device-width:1024px) and (max-device-width: 1180px){
+    .navbar-default .navbar-nav > li > a {
+        font-size: 12px !important;
+    }
+}
+
+@media screen and (min-device-width:640px) and (max-device-width: 1180px){
+    .navbar-default .navbar-nav > li > a {
+        font-size: 10px;
+        padding-right: 5px;
+        padding-left: 5px;
+    }
+    .img-brand {
+        height: 42px;
+        margin-left: 25px;
+    }
+}
+
 @media screen and (max-device-width: 769px){
     #welcome img{
         max-height: 100px;
     }
     .img-brand {
-         height: 48px;
-         margin-left: 10px;
-     }
+        height: 48px;
+        margin-left: 10px;
+    }
 }
