@@ -5,22 +5,7 @@
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 ga('create', 'UA-63148072-1', 'auto');
 ga('send', 'pageview');
-// Yandex Metrika
-<!-- Yandex.Metrika counter -->
-<script src="https://mc.yandex.ru/metrika/watch.js" type="text/javascript"></script>
-    <script type="text/javascript">
-try {
-    var yaCounter32203104 = new Ya.Metrika({
-        id:32203104,
-        clickmap:true,
-        trackLinks:true,
-        accurateTrackBounce:true,
-        webvisor:true
-    });
-} catch(e) { }
-</script>
-<noscript><div><img src="https://mc.yandex.ru/watch/32203104" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-<!-- /Yandex.Metrika counter -->
+
 // Disqus
 var disqus_shortname = 'onlinekura';
 var disqus_config = function () {
