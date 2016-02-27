@@ -83,6 +83,7 @@ $(function() {
         text: share_text,
         title: title_text,
         description: $("#result").text(),
-        url: window.location.href
+        url: window.location.href,
+        counter: false
     });
 });
