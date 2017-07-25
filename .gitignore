@@ -1,3 +1,6 @@
 .idea
 img/Thumbs.db
 *.db
+node_modules
+bower_components
+package-lock.json

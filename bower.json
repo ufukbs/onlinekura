@@ -1,0 +1,12 @@
+{
+  "name": "online-kura",
+  "version": "1.0.0",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "jquery": "~1.11.2",
+    "bootstrap": "~3.3.6",
+    "jquery-floating-social-share": "~1.8",
+    "webfontloader": "~1.6.24"
+  }
+}

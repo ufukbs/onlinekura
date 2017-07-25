@@ -219,9 +219,3 @@ Game.prototype.showMessage = function () {
   document.getElementById('timer').innerText = seconds
   document.getElementById('result').innerHTML = this.twemoji ? twemoji.parse(emoji) : emoji
 }
-
-// console documentation
-
-console.log('Use: `new Game(cols, rows, bombs, [emptyemoji, bombemoji, flagemoji, starteremoji], twemojiOrNot)` to start a new game with customizations.')
-console.log(' Eg: `game = new Game(10, 10, 10, ["🌱", "💥", "🚩", "◻️"], false)`')
-console.log(' Or: `game = new Game(16, 16, 30, ["🐣", "💣", "🚧", "◻️"], true)`')
