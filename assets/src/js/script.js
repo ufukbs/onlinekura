@@ -6,7 +6,7 @@ if(document.URL.indexOf("en") >= 0) {
     error_nominee_count_text = "Number of winners should be higher than 0 !";
     error_unique_winner_text = "Number of unique nominees should be higher than number of winners !";
     success_text = "Congratulations!";
-    share_text = "share: ";
+  share_text = {'facebook': 'Share on Facebook', 'twitter': 'Tweet'};
     title_text = "Winner";
 } else {
     close_text = "Kapat";
@@ -14,14 +14,14 @@ if(document.URL.indexOf("en") >= 0) {
     error_nominee_count_text = "Kazanan sayısı en az 1 olmalıdır !";
     error_unique_winner_text = "Farklı aday sayısı, muhtemel kazanan sayısından fazla olmalıdır !";
     success_text = "Tebrikler";
-    share_text = "paylaş: ";
+    share_text = {'facebook': 'Facebook\'ta Paylaş', 'twitter': 'Twitter\'da Paylaş'};
     title_text = "Kazananlar";
 }
 
 function failureTheme(error_text) {
     return "<div class='alert alert-danger text-center'>" +
         "<button type='button' class='close' data-dismiss='alert' aria-label='"+close_text+"'>" +
-        "<span aria-hidden='true'>&times;</span></button>" +
+        "<span aria-hidden>&times;</span></button>" +
         error_text +
         "</div>";
 }
@@ -29,7 +29,7 @@ function failureTheme(error_text) {
 function successTheme(success_text) {
     return "<div class='alert alert-success text-center'>" +
         "<button type='button' class='close' data-dismiss='alert' aria-label='"+close_text+"'>" +
-        "<span aria-hidden='true'>&times;</span></button>" +
+        "<span aria-hidden>&times;</span></button>" +
         "<h3 class='special-border'><i class='fa fa-trophy'></i> "+success_text+" <i class='fa fa-trophy'></i></h3>" +
         "<ul class='ordered-list'>";
 }
@@ -39,26 +39,30 @@ var error_nominee_no = failureTheme(error_nominee_no_text),
     error_unique_winner = failureTheme(error_unique_winner_text),
     success = successTheme(success_text);
 
+
+WebFont.load({
+  google: {
+    families: ['Open+Sans:400,700:latin,latin-ext']
+  }
+});
+
 $(function() {
     $('#get-result').click(function(e) {
         e.preventDefault();
-        var lines = $('#user-input').val().replace(/[^\u00BF-\u1FFF\u2C00-\uD7FF\w]+/g," ").trim().split(' '),
+        var lines = $('#user-input').val().replace(/\n/g, ",").trim().split(',').filter(function(line){ return line !== '' }),
             initial_length = lines.length,
             lines = $.unique(lines), // eval on unique values only
             final_length = lines.length,
-            message = "",
+            message = '',
             nomineeCount = $('#count').val();
 
-        if(initial_length > final_length && final_length - 1 < nomineeCount) {
+        if (initial_length > final_length && final_length - 1 < nomineeCount) {
             message += error_unique_winner;
-        }
-        else if(final_length - 1 < nomineeCount) {
+        } else if(final_length - 1 < nomineeCount) {
             message += error_nominee_no;
-        }
-        else if (nomineeCount < 1) {
+        } else if (nomineeCount < 1) {
             message += error_nominee_count;
-        }
-        else {
+        } else {
             message += success;
             var winners = [];
             while(nomineeCount != 0) {
@@ -74,7 +78,6 @@ $(function() {
             message += "</ul></div>";
         }
         $("#result").hide().html(message).fadeIn('slow');
-        // scroll to func: $('body').scrollTo('#result');
         $("meta[property='og\\:description']").attr("content", $("#result").text());
     });
     // share buttons
